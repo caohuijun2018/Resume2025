@@ -1,5 +1,4 @@
 import { ThemeProvider } from "styled-components";
-import { PDFExportButton } from "./components/PDFExportButton";
 import { IconText } from "./components/IconText";
 import { SectionContainer } from "./components/Section";
 import { SectionTitle } from "./components/Section";
@@ -10,6 +9,8 @@ import { Flag, Information, Time, Phone, Email } from "./icon/icons";
 import { theme } from "./styles/theme";
 import { Space } from "antd";
 import { ResumeContent } from './styles/globalStyles'
+import Footer from "./components/Footer";
+import { exportToPdf } from "./components/ExportToPDF";
 
 const iconMap = {
   Flag: <Flag />,
@@ -22,7 +23,10 @@ const iconMap = {
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <ResumeContent>
+      {/* <button onClick={exportToPdf} style={{ margin: "20px auto", display: "block" }}>
+        Export to PDF
+      </button> */}
+      <ResumeContent id='resume'>
         {/* 基本信息 */}
         <SectionContainer>
           <SectionTitle level={4}>基本信息</SectionTitle>
@@ -43,8 +47,10 @@ export default function App() {
           <SectionTitle level={4}>工作经历</SectionTitle>
           {resumeData.workExperience.map((exp, index) => (
             <div key={index}>
-              <h4>{exp.company} - {exp.position}</h4>
-              <p style={{ color: theme.secondaryColor }}>{exp.period}</p>
+              <div className="line">
+                <h4>{exp.company} - {exp.position}</h4>
+                <p style={{ color: theme.secondaryColor }}>{exp.period}</p>
+              </div>
               <ul>
                 {exp.highlights.map((highlight, i) => (
                   <li key={i}>{highlight}</li>
@@ -69,6 +75,7 @@ export default function App() {
             </div>
           ))}
         </SectionContainer>
+        <div className="page-break" ></div>
 
         {/* 技能清单 */}
 
@@ -91,8 +98,9 @@ export default function App() {
             <p style={{ color: theme.secondaryColor }}>{resumeData.education.degree} {resumeData.education.period}</p>
           </div>
         </SectionContainer>
-
+        {/* <Footer /> */}
       </ResumeContent>
+
     </ThemeProvider>
   );
 }
