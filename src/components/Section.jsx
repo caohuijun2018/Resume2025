@@ -12,8 +12,26 @@ export const SectionContainer = styled.section`
 
   .line {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    height: 22px;
+    .right {
+      margin-left: 20px;
+    }
+  }
+
+  .list {
+    .listItem {
+      margin: 10px 0;
+    }
+  }
+
+  .information {
+    margin: 0 40px;
+  }
+
+  .project-block {
+    margin: 20px 0;
   }
 `;
 
@@ -23,6 +41,6 @@ export const SectionTitle = styled(Title)`
     border-left: 4px solid ${({ theme }) => theme.primaryColor};
     padding-left: 1rem;
     margin-top: 1rem !important;
-    /* margin-bottom: 1.5rem !important; */
+    margin-bottom: 1.5rem !important;
   }
 `;

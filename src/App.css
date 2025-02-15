@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Merriweather:wght@400;700&display=swap');
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  font-family: 'Montserrat', sans-serif; /* 无衬线字体 */
+}
+
+h1, h2 {
+  font-family: 'Merriweather', serif; /* 衬线字体 */
 }

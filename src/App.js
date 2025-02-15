@@ -7,7 +7,7 @@ import { MailOutlined, PhoneOutlined, GithubOutlined } from "@ant-design/icons";
 import { Flag, Information, Time, Phone, Email } from "./icon/icons";
 
 import { theme } from "./styles/theme";
-import { Space } from "antd";
+import { Space, List } from "antd";
 import { ResumeContent } from './styles/globalStyles'
 import Footer from "./components/Footer";
 import { exportToPdf } from "./components/ExportToPDF";
@@ -30,13 +30,8 @@ export default function App() {
         {/* 基本信息 */}
         <SectionContainer>
           <SectionTitle level={4}>基本信息</SectionTitle>
-          <div>
-            {resumeData.basicInfo.contact.slice(0, 3).map((item, index) => (
-              <IconText key={index} icon={iconMap[item.icon]} text={item.text} />
-            ))}
-          </div>
-          <div>
-            {resumeData.basicInfo.contact.slice(3, 5).map((item, index) => (
+          <div className="information">
+            {resumeData.basicInfo.contact.map((item, index) => (
               <IconText key={index} icon={iconMap[item.icon]} text={item.text} />
             ))}
           </div>
@@ -49,11 +44,11 @@ export default function App() {
             <div key={index}>
               <div className="line">
                 <h4>{exp.company} - {exp.position}</h4>
-                <p style={{ color: theme.secondaryColor }}>{exp.period}</p>
+                <p style={{ color: theme.secondaryColor }} className="right">{exp.period}</p>
               </div>
-              <ul>
+              <ul className="list">
                 {exp.highlights.map((highlight, i) => (
-                  <li key={i}>{highlight}</li>
+                  <li key={i} className="listItem">{highlight}</li>
                 ))}
               </ul>
             </div>
@@ -64,12 +59,14 @@ export default function App() {
         <SectionContainer>
           <SectionTitle level={4}>项目介绍</SectionTitle>
           {resumeData.projects.map((exp, index) => (
-            <div key={index}>
-              <h4>{exp.name}</h4>
-              <p style={{ color: theme.secondaryColor }}>{exp.role}</p>
-              <ul>
+            <div key={index} className="project-block">
+              <div className="line">
+                <h4>{exp.name}</h4>
+                <p style={{ color: theme.secondaryColor }} className="right">{exp.role}</p>
+              </div>
+              <ul className="list">
                 {exp.description.map((highlight, i) => (
-                  <li key={i}>{highlight}</li>
+                  <li key={i} className="listItem">{highlight}</li>
                 ))}
               </ul>
             </div>
@@ -83,8 +80,8 @@ export default function App() {
           <SectionTitle level={4}>技能清单</SectionTitle>
           <ul>
             {resumeData.skills.map((exp, index) => (
-              <div key={index}>
-                <li>{exp.description}</li>
+              <div key={index}  className="list">
+                <li className="listItem">{exp.description}</li>
               </div>
             ))}
           </ul>
@@ -93,9 +90,9 @@ export default function App() {
         {/* 教育经历 */}
         <SectionContainer>
           <SectionTitle level={4}>教育经历</SectionTitle>
-          <div>
+          <div className="line">
             <h4>{resumeData.education.university}</h4>
-            <p style={{ color: theme.secondaryColor }}>{resumeData.education.degree} {resumeData.education.period}</p>
+            <p style={{ color: theme.secondaryColor }} className="right">{resumeData.education.degree} {resumeData.education.period}</p>
           </div>
         </SectionContainer>
         {/* <Footer /> */}
